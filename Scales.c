@@ -31,27 +31,27 @@
 */
 float *generateScale( double referencePitch, int numSteps )
 {
-    double NthRoot, pitch;
-    int i;
+	double NthRoot, pitch;
+	int i;
 
 	/* Create a new and empty array that will contain the frequencies. */
-    float *ret = malloc( numSteps * sizeof( float ) );
+	float *ret = malloc( numSteps * sizeof( float ) );
 
 	/* This is the nth root that we only need to calculate once. */
 	NthRoot = pow(2, (1.0 / numSteps));
 
 	/* Walk through from start to end (this is inclusive of the octave equivalent). */
 	for( i=0; i<=numSteps; i++ )
-    {
+	{
 		/* Calculate tne new pitch. */
-        pitch = referencePitch * (pow(NthRoot, (double)i));
+		pitch = referencePitch * (pow(NthRoot, (double)i));
 
 		/* Round it so we only have two decimal places. */
 		pitch = round(pitch * 100) / 100;
 
-        /* Store in the scale array. */
-        ret[i] = (float)pitch;
-    }
+		/* Store in the scale array. */
+		ret[i] = (float)pitch;
+	}
 
 	return ret;
 }
@@ -72,9 +72,11 @@ void main()
 
 	/* Do a simple display of the values. */
 	for( i=0; i<steps; i++ )
-    {
+	{
 		/* Output to screen. */
-        printf("%.2f\n", freqs[i]);
-    }
+		printf("%.2f\n", freqs[i]);
+	}
+	
+	free( freqs );
 
 }
